@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>P3R</title>
+    <title>P3R/gelidis</title>
     <link>https://p3rception.github.io/</link>
-    <description>Recent content on P3R</description>
+    <description>Recent content on P3R/gelidis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>dim.pergel@gmail.com (Dimitris Pergelidis)</managingEditor>
@@ -17,7 +17,7 @@
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
       <guid>https://p3rception.github.io/about/</guid>
       <description></description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/about/featured-about-1.jpg" />
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
       <guid>https://p3rception.github.io/resume/</guid>
       <description></description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/resume/featured-resume-3.jpg" />
     </item>
     
     <item>
@@ -48,6 +48,16 @@
       <guid>https://p3rception.github.io/posts/university/test-post/</guid>
       <description></description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/posts/university/test-post/featured-vr.jpg" />
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>https://p3rception.github.io/projects/</link>
+      <pubDate>Mon, 13 Jun 2022 20:55:37 +0100</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/projects/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/projects/featured-projects-2.jpg" />
     </item>
     
   </channel>
