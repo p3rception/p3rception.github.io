@@ -3,32 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://p3rception.github.io/</loc>
     <lastmod>2024-10-04T20:28:51+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://p3rception.github.io/about/</loc>
     <lastmod>2024-10-04T20:28:51+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://p3rception.github.io/posts/</loc>
     <lastmod>2024-10-04T20:28:51+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/resume/</loc>
-    <lastmod>2024-10-04T20:28:51+03:00</lastmod>
+    <loc>https://p3rception.github.io/resume/</loc>
+    <lastmod>2024-10-02T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/first-post/</loc>
-    <lastmod>1992-03-19T00:00:00+00:00</lastmod>
+    <loc>https://p3rception.github.io/posts/tech/test-post/</loc>
+    <lastmod>2024-10-02T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://p3rception.github.io/posts/university/test-post/</loc>
+    <lastmod>2024-10-02T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
