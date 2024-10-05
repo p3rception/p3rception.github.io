@@ -4,7 +4,13 @@
 
   <url>
     <loc>https://p3rception.github.io/</loc>
-    <lastmod>2024-10-04T20:28:51+03:00</lastmod>
+    <lastmod>2024-10-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://p3rception.github.io/posts/tech/kali-vm-arm64/</loc>
+    <lastmod>2024-10-05T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
