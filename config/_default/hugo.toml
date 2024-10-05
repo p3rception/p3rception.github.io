@@ -17,7 +17,7 @@ buildFuture = false
 
 enableEmoji = true
 
-# googleAnalytics = "G-XXXXXXXXX"
+googleAnalytics = "G-0FDM1SFK5H"
 
 [imaging]
 anchor = 'Center'

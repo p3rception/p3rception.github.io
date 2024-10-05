@@ -23,6 +23,7 @@ layoutBackgroundHeaderSpace: false
 
 #
 {{< github repo="p3rception/glassfox" >}}
+
 #
 {{< github repo="p3rception/indigo-zed" >}}
 #
