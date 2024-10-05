@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on P3Rception</title>
-    <link>http://localhost:1313/tags/</link>
-    <description>Recent content in Tags on P3Rception</description>
+    <title>Tags on P3R</title>
+    <link>https://p3rception.github.io/tags/</link>
+    <description>Recent content in Tags on P3R</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>dim.pergel@gmail.com (Dimitris Pergelidis)</managingEditor>
     <webMaster>dim.pergel@gmail.com (Dimitris Pergelidis)</webMaster>
     <copyright>© 2024 Dimitris Pergelidis</copyright>
-    <lastBuildDate>Thu, 19 Mar 1992 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://p3rception.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>M110</title>
-      <link>http://localhost:1313/tags/m110/</link>
-      <pubDate>Thu, 19 Mar 1992 00:00:00 +0000</pubDate>
+      <title>Assignment</title>
+      <link>https://p3rception.github.io/tags/assignment/</link>
+      <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>http://localhost:1313/tags/m110/</guid>
+      <guid>https://p3rception.github.io/tags/assignment/</guid>
       <description></description>
       
     </item>
     
     <item>
-      <title>UOA</title>
-      <link>http://localhost:1313/tags/uoa/</link>
-      <pubDate>Thu, 19 Mar 1992 00:00:00 +0000</pubDate>
+      <title>Guide</title>
+      <link>https://p3rception.github.io/tags/guide/</link>
+      <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>http://localhost:1313/tags/uoa/</guid>
+      <guid>https://p3rception.github.io/tags/guide/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://p3rception.github.io/tags/linux/</link>
+      <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/tags/linux/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>M110</title>
+      <link>https://p3rception.github.io/tags/m110/</link>
+      <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/tags/m110/</guid>
       <description></description>
       
     </item>

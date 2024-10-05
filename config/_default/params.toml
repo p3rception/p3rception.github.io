@@ -1,18 +1,21 @@
 colorScheme = "blowfish"
 defaultAppearance = "dark"
 autoSwitchAppearance = false
+
 enableSearch = true
 enableCodeCopy = true
-replyByEmail = false
+
+# replyByEmail = false
+
 disableImageOptimization = false
-disableTextInHeader = false
+disableTextInHeader = true
+
 defaultBackgroundImage = "/img/background.jpg"
 defaultFeaturedImage = "/img/background.jpg"
+
 highlightCurrentMenuArea = true
 smartTOC = true
 smartTOCHideUnfocusedChildren = false
-giteaDefaultServer = "https://git.fsfe.org"
-forgejoDefaultServer = "https://v8.next.forgejo.org"
 
 [header]
 layout = "fixed"
@@ -28,9 +31,9 @@ showScrollToTop = true
 layout = "background"
 showRecent = true
 showRecentItems = 5
-showMoreLink = false
+showMoreLink = true
 showMoreLinkDest = "/posts/"
-cardView = false
+cardView = true
 cardViewScreenWidth = false
 layoutBackgroundBlur = true
 
@@ -41,7 +44,8 @@ showLikes = false
 showDateOnlyInArticle = false
 showDateUpdated = false
 showAuthor = true
-showHero = false
+showHero = true
+heroStyle = "background"
 layoutBackgroundBlur = true
 layoutBackgroundHeaderSpace = true
 showBreadcrumbs = false
@@ -60,20 +64,19 @@ showWordCount = true
 showZenMode = false
 
 [list]
-showHero = false
+showHero = true
+heroStyle = "background"
 layoutBackgroundBlur = true
-layoutBackgroundHeaderSpace = true
+layoutBackgroundHeaderSpace = false
 showBreadcrumbs = false
-showSummary = false
 showViews = false
 showLikes = false
+showSummary = false
 showTableOfContents = false
-showCards = false
-orderByWeight = false
-groupByYear = true
-cardView = false
+showCards = true
+groupByYear = false
+cardView = true
 cardViewScreenWidth = false
-constrainItemsWidth = false
 
 [sitemap]
 excludedKinds = [ "taxonomy", "term" ]

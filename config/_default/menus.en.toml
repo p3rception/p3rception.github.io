@@ -21,9 +21,21 @@
   weight = 20
 
 [[main]]
+  name = "University"
+  parent = "Posts"
+  pageRef = "categories/university"
+  weight = 20
+
+[[main]]
+  name = "Tech"
+  parent = "Posts"
+  pageRef = "categories/tech"
+  weight = 20
+
+[[main]]
   name = "Resume"
   pageRef = "resume"
-  weight = 40
+  weight = 60
 
 [[main]]
   identifier = "github"
@@ -35,7 +47,7 @@
   identifier = "linkedin"
   pre = "linkedin"
   url = "https://www.linkedin.com/in/dimitrisper/"
-  weight = 70
+  weight = 80
 
 # -- Footer --
 
