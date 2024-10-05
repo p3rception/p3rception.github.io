@@ -1,7 +1,7 @@
 disabled = false
 languageCode = "en"
 languageName = "English"
-title = "P3R"
+title = "P3R/gelidis"
 weight = 1
 
 [params]

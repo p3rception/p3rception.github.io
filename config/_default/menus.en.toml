@@ -38,16 +38,21 @@
   weight = 60
 
 [[main]]
+  name = "Projects"
+  pageRef = "projects"
+  weight = 70
+
+[[main]]
   identifier = "github"
   pre = "github"
   url = "https://github.com/p3rception"
-  weight = 70
+  weight = 100
 
 [[main]]
   identifier = "linkedin"
   pre = "linkedin"
   url = "https://www.linkedin.com/in/dimitrisper/"
-  weight = 80
+  weight = 100
 
 # -- Footer --
 

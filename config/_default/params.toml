@@ -10,8 +10,8 @@ enableCodeCopy = true
 disableImageOptimization = false
 disableTextInHeader = true
 
-defaultBackgroundImage = "/img/background.jpg"
-defaultFeaturedImage = "/img/background.jpg"
+defaultBackgroundImage = "/img/background-4.jpg"
+defaultFeaturedImage = "/img/background-4.jpg"
 
 highlightCurrentMenuArea = true
 smartTOC = true
@@ -83,7 +83,9 @@ excludedKinds = [ "taxonomy", "term" ]
 
 [taxonomy]
 showTermCount = true
-showHero = false
+showHero = true
+heroStyle = "background"
+layoutBackgroundBlur = true
 showBreadcrumbs = false
 showViews = false
 showLikes = false
@@ -91,7 +93,9 @@ showTableOfContents = false
 cardView = false
 
 [term]
-showHero = false
+showHero = true
+heroStyle = "background"
+layoutBackgroundBlur = true
 showBreadcrumbs = false
 showViews = false
 showLikes = false

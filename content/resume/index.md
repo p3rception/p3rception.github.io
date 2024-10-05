@@ -3,13 +3,14 @@ title: "Resume"
 date: 2024-10-02
 draft: false
 
+showauthor: false
 showDate : false
 showDateOnlyInArticle : false
 showDateUpdated : false
 showHeadingAnchors : false
 showPagination : false
 showReadingTime : false
-showTableOfContents : true
+showTableOfContents : false
 showTaxonomies : false 
 showWordCount : false
 showSummary : false
@@ -20,6 +21,10 @@ showLikes: false
 layoutBackgroundHeaderSpace: false
 
 ---
+#
+{{< button href="Resume.pdf" target="_self" >}}
+Downloadㅤ{{< icon "pdf-file" >}}
+{{< /button >}}
 
 ## Experience
 
@@ -68,7 +73,7 @@ layoutBackgroundHeaderSpace: false
             <th>University</th>
             <th>Link</th>
             <th>Degree</th>
-            <th>Date</th>
+            <th>Dates</th>
         </tr>
     </thead>
     <tbody>
