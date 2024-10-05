@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>P3Rception</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on P3Rception</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>dim.pergel@gmail.com (Dimitris Pergelidis)</managingEditor>
+    <webMaster>dim.pergel@gmail.com (Dimitris Pergelidis)</webMaster>
+    <copyright>© 2024 Dimitris Pergelidis</copyright>
+    <lastBuildDate>Fri, 04 Oct 2024 20:28:51 +0300</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Fri, 04 Oct 2024 20:28:51 +0300</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>http://localhost:1313/about/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Resume</title>
+      <link>http://localhost:1313/resume/</link>
+      <pubDate>Fri, 04 Oct 2024 20:28:51 +0300</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>http://localhost:1313/resume/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>First Post</title>
+      <link>http://localhost:1313/posts/first-post/</link>
+      <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>http://localhost:1313/posts/first-post/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/first-post/featured-vr.jpg" />
+    </item>
+    
+  </channel>
+</rss>
