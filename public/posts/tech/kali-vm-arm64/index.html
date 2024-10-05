@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="false"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Kali Linux on Apple Silicon [2024] &middot; P3R/gelidis</title>
+  <meta name="title" content="Kali Linux on Apple Silicon [2024] &middot; P3R/gelidis" />
+  
+  <meta name="description" content="P3R | Dimitris Pergelidis" />
+  <meta name="keywords" content="Kali, Linux, UTM, Virtual Machines, arm64, MacOS, " />
+  
+  
+  <link rel="canonical" href="https://p3rception.github.io/posts/tech/kali-vm-arm64/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.6a019938f39282016d4b0f6665cb8d071a32d7cb8b63189004fcbf45c4580d5b209714cdd6f39b8750ff78b17d02c97772ee268703bc989adbc02ae01d627da8.css"
+    integrity="sha512-agGZOPOSggFtSw9mZcuNBxoy18uLYxiQBPy/RcRYDVsglxTN1vObh1D/eLF9Asl3cu4mhwO8mJrbwCrgHWJ9qA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.efbf3b6b987689fffaf2d7b73173d2690c0279a04d444b0537a77d7f4ff6e6d493445400cb0cf56bc0f0f123e19f15394e63cae34e67f069bd013dd5c73df56e.js"
+    integrity="sha512-7787a5h2if/68te3MXPSaQwCeaBNREsFN6d9f0/25tSTRFQAywz1a8Dw8SPhnxU5TmPK405n8Gm9AT3Vxz31bg==" data-copy="" data-copied=""></script>
+  
+  
+  
+  <script src="/lib/zoom/zoom.min.37d2094687372da3f7343a221a470f6b8806f7891aa46a5a03966af7f0ebd38b9fe536cb154e6ad28f006d184b294525a7c4054b6bbb4be62d8b453b42db99bd.js" integrity="sha512-N9IJRoc3LaP3NDoiGkcPa4gG94kapGpaA5Zq9/Dr04uf5TbLFU5q0o8AbRhLKUUlp8QFS2u7S&#43;Yti0U7QtuZvQ=="></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://p3rception.github.io/posts/tech/kali-vm-arm64/">
+  <meta property="og:site_name" content="P3R/gelidis">
+  <meta property="og:title" content="Kali Linux on Apple Silicon [2024]">
+  <meta property="og:description" content="P3R | Dimitris Pergelidis">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-10-05T00:00:00+00:00">
+    <meta property="article:tag" content="Kali">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="UTM">
+    <meta property="article:tag" content="Virtual Machines">
+    <meta property="article:tag" content="Arm64">
+    <meta property="article:tag" content="MacOS">
+    <meta property="og:image" content="https://p3rception.github.io/posts/tech/kali-vm-arm64/featured-kali-ascii.png">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://p3rception.github.io/posts/tech/kali-vm-arm64/featured-kali-ascii.png">
+  <meta name="twitter:title" content="Kali Linux on Apple Silicon [2024]">
+  <meta name="twitter:description" content="P3R | Dimitris Pergelidis">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Kali Linux on Apple Silicon [2024]",
+    "headline": "Kali Linux on Apple Silicon [2024]",
+    
+    
+    "inLanguage": "en",
+    "url" : "https:\/\/p3rception.github.io\/posts\/tech\/kali-vm-arm64\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Dimitris Pergelidis"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-10-05T00:00:00\u002b00:00",
+    "datePublished": "2024-10-05T00:00:00\u002b00:00",
+    
+    "dateModified": "2024-10-05T00:00:00\u002b00:00",
+    
+    "keywords": ["Kali","Linux","UTM","Virtual Machines","arm64","MacOS"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1162"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="Dimitris Pergelidis" />
+  
+  
+  
+  <link href="mailto:dim.pergel@gmail.com" rel="me" />
+  
+  
+  <link href="https://github.com/p3rception" rel="me" />
+  
+  
+  <link href="https://linkedin.com/in/dimitrisper" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FDM1SFK5H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0FDM1SFK5H');
+</script>
+
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    
+    
+    <div>
+        <a href="/" class="flex">
+            <span class="sr-only">P3R/gelidis</span>
+
+            
+            <img src="/img/logo.png" width="1920" height="1080"
+                class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="P3R/gelidis" />
+            
+
+        </a>
+    </div>
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+            
+  <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        About
+    </p>
+</a>
+
+
+
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      Posts
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/categories/tech/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Tech
+          </p>
+        </a>
+        
+        <a href="/categories/university/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            University
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/resume/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Resume
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/projects/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Projects
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="https://github.com/p3rception"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <span >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+    </span>
+    
+    <p class="text-base font-medium" title="">
+        
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="https://www.linkedin.com/in/dimitrisper/"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <span >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+    </span>
+    
+    <p class="text-base font-medium" title="">
+        
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" class="block">
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li id="menu-close-button">
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            About
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Posts
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/categories/tech/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Tech
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/categories/university/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            University
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/resume/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Resume
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/projects/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Projects
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://github.com/p3rception"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <div >
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+        </div>
+        
+        <p class="text-bg font-bg" title="">
+            
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://www.linkedin.com/in/dimitrisper/"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <div >
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+        </div>
+        
+        <p class="text-bg font-bg" title="">
+            
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+<script>
+    (function () {
+        var $mainmenu = $('.main-menu');
+        var path = window.location.pathname;
+        $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+            $(e).children('p').addClass('active');
+        });
+    })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/posts/tech/kali-vm-arm64/featured-kali-ascii_hu17716829547836844570.png);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      Kali Linux on Apple Silicon [2024]
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-05T00:00:00&#43;00:00">5 October 2024</time><span class="px-2 text-primary-500">&middot;</span><span>1162 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/tech/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Tech
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/kali/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Kali
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/linux/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Linux
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/utm/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    UTM
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/virtual-machines/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Virtual Machines
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arm64/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Arm64
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/macos/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    MacOS
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+         <details open id="TOCView"
+  class="toc-right mt-0 overflow-y-scroll overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1-install-utm">Step 1: Install UTM</a></li>
+    <li><a href="#step-2-get-kali-linux-installer-image-for-arm">Step 2: Get Kali Linux Installer Image for ARM</a></li>
+    <li><a href="#step-3-create-a-vm-using-the-image">Step 3: Create A VM Using the Image</a></li>
+    <li><a href="#step-4-boot-and-install-kali-linux">Step 4: Boot and Install Kali Linux</a></li>
+    <li><a href="#step-5-enable-dynamic-resolution--clipboard-sharing">Step 5: Enable Dynamic Resolution &amp; Clipboard Sharing</a></li>
+    <li><a href="#step-6-enable-directory-sharing">Step 6: Enable Directory Sharing</a></li>
+    <li><a href="#step-7-congratulations-">Step 7: Congratulations 🎉</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1-install-utm">Step 1: Install UTM</a></li>
+    <li><a href="#step-2-get-kali-linux-installer-image-for-arm">Step 2: Get Kali Linux Installer Image for ARM</a></li>
+    <li><a href="#step-3-create-a-vm-using-the-image">Step 3: Create A VM Using the Image</a></li>
+    <li><a href="#step-4-boot-and-install-kali-linux">Step 4: Boot and Install Kali Linux</a></li>
+    <li><a href="#step-5-enable-dynamic-resolution--clipboard-sharing">Step 5: Enable Dynamic Resolution &amp; Clipboard Sharing</a></li>
+    <li><a href="#step-6-enable-directory-sharing">Step 6: Enable Directory Sharing</a></li>
+    <li><a href="#step-7-congratulations-">Step 7: Congratulations 🎉</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+<script>
+
+  var margin = 200;
+  var marginError = 50;
+
+  (function () {
+    var $window = $(window);
+    var $toc = $('#TOCView');
+    var tocHeight = $toc.height();
+
+    function onResize() {
+      var windowAndMarginHeight = $window.height() - margin;
+      if(tocHeight >= windowAndMarginHeight) {
+        $toc.css("overflow-y", "scroll")
+        $toc.css("max-height", (windowAndMarginHeight + marginError) + "px")
+      } else {
+        $toc.css("overflow-y", "hidden")
+        $toc.css("max-height", "9999999px")
+      }
+    }
+
+    $window.on('resize', onResize);
+    $(document).ready(onResize);
+  })();
+
+
+
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = decodeURIComponent(e.attr('id'));
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+          
+            $(e).removeClass('active');
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+        
+        onScroll();
+      });
+    }
+  })();
+
+
+</script>
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          <p><em>This guide is based on macOS 14.4, UTM 4.4.6 and Kali Linux 2024.1-arm64.</em></p>
+<hr>
+<span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    
+First Post!
+
+  </span>
+</span>
+
+<p>UTM, a macOS-specific virtualization tool, offers cybersecurity enthusiasts a solution for running diverse operating systems like Kali Linux on Apple Silicon MacBooks, filling the gap left by incompatible traditional options such as VirtualBox.</p>
+
+
+<h2 class="relative group">Step 1: Install UTM 
+    <div id="step-1-install-utm" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step-1-install-utm" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Download the .dmg file from <a href="https://mac.getutm.app/" target="_blank">https://mac.getutm.app/</a> and install it.</p>
+
+
+<h2 class="relative group">Step 2: Get Kali Linux Installer Image for ARM 
+    <div id="step-2-get-kali-linux-installer-image-for-arm" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step-2-get-kali-linux-installer-image-for-arm" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Go to <a href="https://www.kali.org/get-kali/#kali-installer-images" target="_blank">https://www.kali.org/get-kali/#kali-installer-images</a> to download the latest official installer image. Make sure to choose “<strong>Apple Silicon (ARM64)”</strong>. You can choose offline or online installer image per your needs, but the offline image is recommended for simplicity.</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/1_hu17844167651431401027.png 330w,
+        /posts/tech/kali-vm-arm64/img/1_hu2806124076033102157.png 660w,
+        /posts/tech/kali-vm-arm64/img/1_hu17966826249091786552.png 1024w,
+        /posts/tech/kali-vm-arm64/img/1_hu3824836658173129327.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/1_hu2806124076033102157.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>After downloading, you should have an <strong><code>.iso</code></strong> file on your disk.</p>
+
+
+<h2 class="relative group">Step 3: Create A VM Using the Image 
+    <div id="step-3-create-a-vm-using-the-image" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step-3-create-a-vm-using-the-image" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p><em><strong>Tips:</strong>  During setup, UTM might ask for system permissions multiple times; please grant them. Most VM settings can be adjusted post-creation, so initial setup needn’t be time-consuming.</em></p>
+<ol>
+<li>Open UTM. Click the <strong>“+”</strong> button to create a new VM. Then select “<strong>Virtualize”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/2_hu5818831544034357404.png 330w,
+        /posts/tech/kali-vm-arm64/img/2_hu14172471250310883706.png 660w,
+        /posts/tech/kali-vm-arm64/img/2_hu40434195258221171.png 1024w,
+        /posts/tech/kali-vm-arm64/img/2_hu5092524673403775955.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/2_hu14172471250310883706.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="2">
+<li>Select <strong>“Other”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/3_hu15358303415451089138.png 330w,
+        /posts/tech/kali-vm-arm64/img/3_hu11433938987666378780.png 660w,
+        /posts/tech/kali-vm-arm64/img/3_hu3915560772106438412.png 1024w,
+        /posts/tech/kali-vm-arm64/img/3_hu11461416594520972039.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/3_hu11433938987666378780.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="3">
+<li>Click <strong>“Browse”</strong> to select the <strong><code>.iso</code></strong> file you just downloaded, and then click <strong>“Continue”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/4_hu1258860064099481402.png 330w,
+        /posts/tech/kali-vm-arm64/img/4_hu12460136528804734803.png 660w,
+        /posts/tech/kali-vm-arm64/img/4_hu13610812316811797760.png 1024w,
+        /posts/tech/kali-vm-arm64/img/4_hu17480116889346003116.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/4_hu12460136528804734803.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol>
+<li>Leave Memory and CPU settings as default. Click <strong>“Continue”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/5_hu2202727349428941693.png 330w,
+        /posts/tech/kali-vm-arm64/img/5_hu6418970061559174401.png 660w,
+        /posts/tech/kali-vm-arm64/img/5_hu14913007455170326924.png 1024w,
+        /posts/tech/kali-vm-arm64/img/5_hu7801583533830410606.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/5_hu6418970061559174401.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="2">
+<li>Decide the disk space for Kali Linux. Kali’s docs recommends ≥ 20GB on the higher end. Then click <strong>“Continue”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/6_hu15526360744888076431.png 330w,
+        /posts/tech/kali-vm-arm64/img/6_hu4759801540729268841.png 660w,
+        /posts/tech/kali-vm-arm64/img/6_hu4365402394315969441.png 1024w,
+        /posts/tech/kali-vm-arm64/img/6_hu10313518216107897546.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/6_hu4759801540729268841.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="3">
+<li>Set up a shared directory path if needed. This allows sharing files between the host and the virtual client. Let’s skip it for now and click <strong>“Continue”.</strong></li>
+</ol>
+<p><em><strong>Tips:</strong> To make directory-sharing work, you need to install some software later in the virtual machine guest, which will be mentioned later.</em></p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/7_hu12724932067484985571.png 330w,
+        /posts/tech/kali-vm-arm64/img/7_hu916026997977449922.png 660w,
+        /posts/tech/kali-vm-arm64/img/7_hu11082895845608954371.png 1024w,
+        /posts/tech/kali-vm-arm64/img/7_hu787493290837960770.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/7_hu916026997977449922.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="7">
+<li>Review the summary, choose a nickname for this VM, and click <strong>“Save”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/8_hu9991199387155665411.png 330w,
+        /posts/tech/kali-vm-arm64/img/8_hu18207807990849860178.png 660w,
+        /posts/tech/kali-vm-arm64/img/8_hu9447039961461865229.png 1024w,
+        /posts/tech/kali-vm-arm64/img/8_hu4038389247776560490.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/8_hu18207807990849860178.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="8">
+<li>Now your should see the new virtual machine on the left.</li>
+</ol>
+
+
+<h2 class="relative group">Step 4: Boot and Install Kali Linux 
+    <div id="step-4-boot-and-install-kali-linux" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step-4-boot-and-install-kali-linux" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p><em><strong>Tips:</strong> The following sub-steps are complex and require <strong>careful attention.</strong></em></p>
+<ol>
+<li>Right click the new VM and select <strong>“Edit”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/9_hu15203158383840716713.png 330w,
+        /posts/tech/kali-vm-arm64/img/9_hu10967310158991971987.png 660w,
+        /posts/tech/kali-vm-arm64/img/9_hu2948933792466198018.png 1024w,
+        /posts/tech/kali-vm-arm64/img/9_hu13871020335996578793.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/9_hu10967310158991971987.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="2">
+<li>Due to a bug on UTM, we need to install Kali in console-only mode.
+Firstly, in the devices list, right click the current Display and select <strong>“Remove”</strong>. Then select <strong>“+ New…”</strong> and add a <strong>“Serial”</strong> device. This will give us a console GUI during the the boot.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/10_hu8472161102104380530.png 330w,
+        /posts/tech/kali-vm-arm64/img/10_hu4027511457072553884.png 660w,
+        /posts/tech/kali-vm-arm64/img/10_hu299085843819847738.png 1024w,
+        /posts/tech/kali-vm-arm64/img/10_hu7838041071824266125.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/10_hu4027511457072553884.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>Remove the existing “Display” device</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/11_hu4256295943373657429.png 330w,
+        /posts/tech/kali-vm-arm64/img/11_hu18041403887303228936.png 660w,
+        /posts/tech/kali-vm-arm64/img/11_hu15630953242767769139.png 1024w,
+        /posts/tech/kali-vm-arm64/img/11_hu8185767018714313078.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/11_hu18041403887303228936.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>Add a new “Serial” device</p>
+<ol>
+<li>After the <strong>“Serial”</strong> device is added, click <strong>“Save”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/12_hu10507241889901544013.png 330w,
+        /posts/tech/kali-vm-arm64/img/12_hu11774491318785834257.png 660w,
+        /posts/tech/kali-vm-arm64/img/12_hu16186767926788794800.png 1024w,
+        /posts/tech/kali-vm-arm64/img/12_hu6764549910481816531.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/12_hu11774491318785834257.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="2">
+<li>Now run the VM.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/13_hu14805231960048671603.png 330w,
+        /posts/tech/kali-vm-arm64/img/13_hu10867961055107201649.png 660w,
+        /posts/tech/kali-vm-arm64/img/13_hu15271673722632474289.png 1024w,
+        /posts/tech/kali-vm-arm64/img/13_hu8641558276396702648.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/13_hu10867961055107201649.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="5">
+<li>It should open a console window, where we will proceed with the installation of Kali Linux. Use your keyboard navigate within this window (e.g, arrow keys to move between options and Enter key to select).</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/14_hu15935903675271142966.png 330w,
+        /posts/tech/kali-vm-arm64/img/14_hu14747660492005871239.png 660w,
+        /posts/tech/kali-vm-arm64/img/14_hu17738448926605571010.png 1024w,
+        /posts/tech/kali-vm-arm64/img/14_hu9433140301924878876.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/14_hu14747660492005871239.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="6">
+<li>Select <strong>“Install”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/15_hu933634601005372076.png 330w,
+        /posts/tech/kali-vm-arm64/img/15_hu14447745184430373140.png 660w,
+        /posts/tech/kali-vm-arm64/img/15_hu1291141504908118684.png 1024w,
+        /posts/tech/kali-vm-arm64/img/15_hu4357786593865560150.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/15_hu14447745184430373140.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="7">
+<li>Follow the instructions to set up language, region, timezone, etc. You can customize your hostname, username, and password as needed. For optional settings like “domain” and “full name”, you can leave them blank.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/16_hu5879289919049778457.png 330w,
+        /posts/tech/kali-vm-arm64/img/16_hu14133071903574376652.png 660w,
+        /posts/tech/kali-vm-arm64/img/16_hu11524753266340665546.png 1024w,
+        /posts/tech/kali-vm-arm64/img/16_hu18303013055122342060.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/16_hu14133071903574376652.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="8">
+<li>When you reach the <strong>“Partition disks”</strong> step, select <strong>“Guided — use entire disk” → “Virtual disk 1” → “All files in one partition” → “Finish partitioning and write changes to disk” → “Yes”</strong>.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/17_hu4243469556117005634.png 330w,
+        /posts/tech/kali-vm-arm64/img/17_hu6807664352925219804.png 660w,
+        /posts/tech/kali-vm-arm64/img/17_hu1058361481789694721.png 1024w,
+        /posts/tech/kali-vm-arm64/img/17_hu12769445239590959420.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/17_hu6807664352925219804.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/18_hu10394719472883404597.png 330w,
+        /posts/tech/kali-vm-arm64/img/18_hu9135999775853872349.png 660w,
+        /posts/tech/kali-vm-arm64/img/18_hu17788528184894936323.png 1024w,
+        /posts/tech/kali-vm-arm64/img/18_hu16916852694311801440.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/18_hu9135999775853872349.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/19_hu88975745338174787.png 330w,
+        /posts/tech/kali-vm-arm64/img/19_hu14987632314569246578.png 660w,
+        /posts/tech/kali-vm-arm64/img/19_hu8342183377408784364.png 1024w,
+        /posts/tech/kali-vm-arm64/img/19_hu13435316518848297918.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/19_hu14987632314569246578.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/20_hu18366169213328988477.png 330w,
+        /posts/tech/kali-vm-arm64/img/20_hu17901535289896903833.png 660w,
+        /posts/tech/kali-vm-arm64/img/20_hu6311570861980010095.png 1024w,
+        /posts/tech/kali-vm-arm64/img/20_hu624681291831985252.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/20_hu17901535289896903833.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/21_hu8030628973799660509.png 330w,
+        /posts/tech/kali-vm-arm64/img/21_hu15030831406660125451.png 660w,
+        /posts/tech/kali-vm-arm64/img/21_hu1696487249059519394.png 1024w,
+        /posts/tech/kali-vm-arm64/img/21_hu3680153245119085216.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/21_hu15030831406660125451.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="9">
+<li>In the <strong>“Software Selection”</strong> step, select the default option, <strong>“Xfce”</strong>. The installation of software packages will take approximately 10 minutes to finish. <strong>DO NOT perform any actions after it finishes</strong>; instead, carefully follow the next sub-step.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/22_hu17338605197150881499.png 330w,
+        /posts/tech/kali-vm-arm64/img/22_hu8453743785228529748.png 660w,
+        /posts/tech/kali-vm-arm64/img/22_hu10511006558609059491.png 1024w,
+        /posts/tech/kali-vm-arm64/img/22_hu12530632112219643154.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/22_hu8453743785228529748.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/23_hu15137643424437687629.png 330w,
+        /posts/tech/kali-vm-arm64/img/23_hu6724210087232694425.png 660w,
+        /posts/tech/kali-vm-arm64/img/23_hu7397472085086734177.png 1024w,
+        /posts/tech/kali-vm-arm64/img/23_hu3981387125904406648.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/23_hu6724210087232694425.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="10">
+<li>When you reach the <strong>“Finish the Installation”</strong> step, <strong>DO NOT select “Continue”</strong>. Instead, return to UTM’s main window, select your VM on the left, and then scroll down to the bottom on the right side. Select <strong>“CD/DVD”</strong> and click <strong>“Clear”</strong>. This action mimics ejecting the installation drive (the <strong><code>.iso</code></strong> file), ensuring that the next reboot will load the installed system instead of booting from the installation drive again.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/24_hu1963361216082017992.png 330w,
+        /posts/tech/kali-vm-arm64/img/24_hu7174423529193675357.png 660w,
+        /posts/tech/kali-vm-arm64/img/24_hu11130676534193292488.png 1024w,
+        /posts/tech/kali-vm-arm64/img/24_hu10804742249796336503.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/24_hu7174423529193675357.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/25_hu9404672515946788067.png 330w,
+        /posts/tech/kali-vm-arm64/img/25_hu17121410827361780407.png 660w,
+        /posts/tech/kali-vm-arm64/img/25_hu13304402742428087721.png 1024w,
+        /posts/tech/kali-vm-arm64/img/25_hu4119906225521388572.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/25_hu17121410827361780407.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p><strong>11. Right click your VM and select “Stop”.</strong></p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/26_hu8868405631553599682.png 330w,
+        /posts/tech/kali-vm-arm64/img/26_hu10830109285152892194.png 660w,
+        /posts/tech/kali-vm-arm64/img/26_hu4205725878791374159.png 1024w,
+        /posts/tech/kali-vm-arm64/img/26_hu11687249117823130629.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/26_hu10830109285152892194.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="12">
+<li>Edit your VM to remove the <strong>“Serial”</strong> device. Then, add a new <strong>“Display”</strong> device, selecting the <strong>“virtio-gpu-pci”</strong> option. Then save the settings and run the machine.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/27_hu11364059302736109229.png 330w,
+        /posts/tech/kali-vm-arm64/img/27_hu7555310892138466765.png 660w,
+        /posts/tech/kali-vm-arm64/img/27_hu13577516366939121248.png 1024w,
+        /posts/tech/kali-vm-arm64/img/27_hu6600005407768616533.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/27_hu7555310892138466765.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="13">
+<li>Log in using your username and password. Your Kali Linux VM is now up and running! However, a few additional setups are required to further enhance the user experience.</li>
+</ol>
+
+
+<h2 class="relative group">Step 5: Enable Dynamic Resolution &amp; Clipboard Sharing 
+    <div id="step-5-enable-dynamic-resolution--clipboard-sharing" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step-5-enable-dynamic-resolution--clipboard-sharing" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li><strong>Dynamic resolution</strong> is a feature that enables the VM’s display resolution to automatically adjust to match the size of the UTM window as it changes.</li>
+<li><strong>Clipboard sharing</strong> facilitates copying and pasting to and from the VM.</li>
+</ul>
+<p>To support these two features, we will need to install a Linux package called <strong><code>spice-vdagent</code></strong>.</p>
+<ol>
+<li>Launch the virtual machine (VM) and log into Kali Linux.</li>
+<li>Open the <strong>“Terminal Emulator”</strong> application.</li>
+<li>Enter the following commands:</li>
+</ol>
+<pre tabindex="0"><code>sudo apt install spice-vdagent
+</code></pre><ol start="4">
+<li>
+<p>Once the installation is complete, restart the VM.</p>
+</li>
+<li>
+<p>**<code>spice-vdagent</code>**should now be running as a systemd service in the background. Test the setup by copying and pasting to or from the VM; it should function seamlessly.</p>
+</li>
+<li>
+<p>However, you may encounter issues with dynamic resolution not functioning. Now you can diagnose using below command:</p>
+</li>
+</ol>
+<pre tabindex="0"><code>sudo systemctl status spice-vdagent
+</code></pre><p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/28_hu8139016592241807173.png 330w,
+        /posts/tech/kali-vm-arm64/img/28_hu14432788656868001900.png 660w,
+        /posts/tech/kali-vm-arm64/img/28_hu6322395041449254210.png 1024w,
+        /posts/tech/kali-vm-arm64/img/28_hu954178462675466779.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/28_hu14432788656868001900.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<p>If you notice error messages such as <strong><code>invalid message size for VDAgentMonitorsConfig</code></strong>, this indicates a known bug in UTM. To work around this issue, you can manually trigger a resolution adjustment by executing the following command:
+<code>xrandr --output Virtual-1 --auto</code></p>
+<ol start="7">
+<li>To avoid the hassle of manually running the command every time you change the window size, you can set up a background service to automate the process. Use the below commands, and remember to replace <strong><code>YOUR_USER_NAME</code></strong> in the script with your actual username:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. Create a script to watch error messages from spice-vdagentd and execute the fix command</span>
+</span></span><span class="line"><span class="cl">sudo tee /usr/local/bin/auto_adjust_resolution.sh &gt; /dev/null <span class="s">&lt;&lt; &#39;EOF&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">journalctl -fu spice-vdagentd | grep --line-buffered &#34;invalid message size&#34; | while read line ; do
+</span></span></span><span class="line"><span class="cl"><span class="s">    xrandr --output Virtual-1 --auto
+</span></span></span><span class="line"><span class="cl"><span class="s">done
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. Make the script executable</span>
+</span></span><span class="line"><span class="cl">sudo chmod +x /usr/local/bin/auto_adjust_resolution.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. Create a systemd service to keep the script running in the background</span>
+</span></span><span class="line"><span class="cl">sudo tee /etc/systemd/system/auto_adjust_resolution.service &gt; /dev/null <span class="s">&lt;&lt; &#39;EOF&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">[Unit]
+</span></span></span><span class="line"><span class="cl"><span class="s">Description=Monitor spice-vdagentd logs for &#34;invalid message size&#34; and adjust display
+</span></span></span><span class="line"><span class="cl"><span class="s">After=network.target
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[Service]
+</span></span></span><span class="line"><span class="cl"><span class="s">Type=simple
+</span></span></span><span class="line"><span class="cl"><span class="s">User=YOUR_USER_NAME
+</span></span></span><span class="line"><span class="cl"><span class="s">Environment=&#34;DISPLAY=:0&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">ExecStart=/usr/local/bin/auto_adjust_resolution.sh
+</span></span></span><span class="line"><span class="cl"><span class="s">Restart=on-failure
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[Install]
+</span></span></span><span class="line"><span class="cl"><span class="s">WantedBy=multi-user.target
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. Register and start the service</span>
+</span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> auto_adjust_resolution.service
+</span></span><span class="line"><span class="cl">sudo systemctl start auto_adjust_resolution.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. Check if the service is up and running</span>
+</span></span><span class="line"><span class="cl">sudo systemctl status auto_adjust_resolution.service
+</span></span></code></pre></div><p>To test the setup, resize the UTM’s VM window. The resolution inside the VM should adjust promptly to match the window size.</p>
+
+
+<h2 class="relative group">Step 6: Enable Directory Sharing 
+    <div id="step-6-enable-directory-sharing" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step-6-enable-directory-sharing" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Directory sharing facilitates the sharing of a directory from the host system with the virtual machine (VM). This functionality depends on the Linux package <strong><code>spice-webdavd</code></strong>. Follow the steps below to set it up: Open the Terminal in Kali Linux and run the following command to install <strong><code>spice-webdavd</code></strong>:</p>
+<pre tabindex="0"><code>sudo apt install spice-webdavd
+</code></pre><ol start="2">
+<li>Stop the VM to access its <strong>“Sharing”</strong> configuration section. Ensure the <strong>“Directory Share Mode”</strong> is set to <strong>“SPICE WebDAV”</strong>. Click <strong>“Browse”</strong> to select the directory on the host system that you wish to share with the VM. And after that, click <strong>“Save”</strong> to apply the changes.</li>
+</ol>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/tech/kali-vm-arm64/img/29_hu3884193937076370485.png 330w,
+        /posts/tech/kali-vm-arm64/img/29_hu13273602297770373011.png 660w,
+        /posts/tech/kali-vm-arm64/img/29_hu7187933399292793429.png 1024w,
+        /posts/tech/kali-vm-arm64/img/29_hu5723584699339558164.png 2x"
+        src="/posts/tech/kali-vm-arm64/img/29_hu13273602297770373011.png"
+        alt=""
+      />
+      
+    </figure>
+</p>
+<ol start="3">
+<li>Now the URL <strong><code>http://localhost:9843</code></strong> is pointing to the SPICE WebDAV server running on the VM. You can access the files using a web browser or a WebDAV client within the VM.</li>
+</ol>
+
+
+<h2 class="relative group">Step 7: Congratulations 🎉 
+    <div id="step-7-congratulations-" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#step-7-congratulations-" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\/tech\/kali-vm-arm64\/index.md"
+        var oid_likes = "likes_posts\/tech\/kali-vm-arm64\/index.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+      
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/tech/test-post/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Tech Post</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-10-02T00:00:00&#43;00:00">2 October 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/tags/"
+            title="">
+            
+            Tags
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/categories/"
+            title="">
+            
+            Categories
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      Dimitris Pergelidis
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://p3rception.github.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

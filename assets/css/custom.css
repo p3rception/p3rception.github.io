@@ -1,3 +1,29 @@
+@font-face {
+	font-family: 'Product Sans';
+	src: url('/fonts/Product Sans Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Product Sans';
+	src: url('/fonts/product-bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Product Sans';
+	src: url('/fonts/product-italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+html {
+	font-family: 'Product Sans', sans-serif;
+	font-size: 14pt;
+}
+
 @media screen and (min-width: 0px) {
 	.customEntitityLogo {
 		background-color: aliceblue;

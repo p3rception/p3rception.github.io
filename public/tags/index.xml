@@ -9,7 +9,67 @@
     <managingEditor>dim.pergel@gmail.com (Dimitris Pergelidis)</managingEditor>
     <webMaster>dim.pergel@gmail.com (Dimitris Pergelidis)</webMaster>
     <copyright>© 2024 Dimitris Pergelidis</copyright>
-    <lastBuildDate>Wed, 02 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://p3rception.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://p3rception.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arm64</title>
+      <link>https://p3rception.github.io/tags/arm64/</link>
+      <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/tags/arm64/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Kali</title>
+      <link>https://p3rception.github.io/tags/kali/</link>
+      <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/tags/kali/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://p3rception.github.io/tags/linux/</link>
+      <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/tags/linux/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>MacOS</title>
+      <link>https://p3rception.github.io/tags/macos/</link>
+      <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/tags/macos/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>UTM</title>
+      <link>https://p3rception.github.io/tags/utm/</link>
+      <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/tags/utm/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Virtual Machines</title>
+      <link>https://p3rception.github.io/tags/virtual-machines/</link>
+      <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/tags/virtual-machines/</guid>
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>Assignment</title>
       <link>https://p3rception.github.io/tags/assignment/</link>
@@ -26,16 +86,6 @@
       <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
       <guid>https://p3rception.github.io/tags/guide/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://p3rception.github.io/tags/linux/</link>
-      <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
-      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>https://p3rception.github.io/tags/linux/</guid>
       <description></description>
       
     </item>

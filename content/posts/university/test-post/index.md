@@ -2,8 +2,8 @@
 title: University Post
 summary: ""
 description: ""
-categories: [Test, University]
-tags: [Assignment, M110]
+categories: [placeholder, university]
+tags: [assignment, m110]
 date: 2024-10-02
 draft: false
 showauthor: false

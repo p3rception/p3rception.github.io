@@ -2,8 +2,8 @@
 title: Tech Post
 summary: ""
 description: ""
-categories: [Test, Tech]
-tags: [Linux, Guide]
+categories: [placeholder, tech]
+tags: [linux, guide]
 date: 2024-10-02
 draft: false
 showauthor: false
