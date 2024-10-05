@@ -52,7 +52,13 @@
   identifier = "linkedin"
   pre = "linkedin"
   url = "https://www.linkedin.com/in/dimitrisper/"
-  weight = 100
+  weight = 102
+
+[[main]]
+  identifier = "hackthebox"
+  pre = "htb"
+  url = "https://app.hackthebox.com/profile/968175"
+  weight = 101
 
 # -- Footer --
 

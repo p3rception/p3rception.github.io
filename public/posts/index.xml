@@ -2,42 +2,42 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on P3R/gelidis</title>
-    <link>https://p3rception.github.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on P3R/gelidis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>dim.pergel@gmail.com (Dimitris Pergelidis)</managingEditor>
     <webMaster>dim.pergel@gmail.com (Dimitris Pergelidis)</webMaster>
     <copyright>© 2024 Dimitris Pergelidis</copyright>
-    <lastBuildDate>Fri, 04 Oct 2024 20:28:51 +0300</lastBuildDate><atom:link href="https://p3rception.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Oct 2024 20:28:51 +0300</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kali Linux on Apple Silicon [2024]</title>
-      <link>https://p3rception.github.io/posts/tech/kali-vm-arm64/</link>
+      <link>http://localhost:1313/posts/tech/kali-vm-arm64/</link>
       <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>https://p3rception.github.io/posts/tech/kali-vm-arm64/</guid>
+      <guid>http://localhost:1313/posts/tech/kali-vm-arm64/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/posts/tech/kali-vm-arm64/featured-kali-ascii.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/tech/kali-vm-arm64/featured-kali-ascii.png" />
     </item>
     
     <item>
       <title>Tech Post</title>
-      <link>https://p3rception.github.io/posts/tech/test-post/</link>
+      <link>http://localhost:1313/posts/tech/test-post/</link>
       <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>https://p3rception.github.io/posts/tech/test-post/</guid>
+      <guid>http://localhost:1313/posts/tech/test-post/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/posts/tech/test-post/featured-linux.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/tech/test-post/featured-linux.jpg" />
     </item>
     
     <item>
       <title>University Post</title>
-      <link>https://p3rception.github.io/posts/university/test-post/</link>
+      <link>http://localhost:1313/posts/university/test-post/</link>
       <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>https://p3rception.github.io/posts/university/test-post/</guid>
+      <guid>http://localhost:1313/posts/university/test-post/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/posts/university/test-post/featured-vr.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/university/test-post/featured-vr.jpg" />
     </item>
     
   </channel>
