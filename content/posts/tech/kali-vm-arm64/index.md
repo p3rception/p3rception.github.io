@@ -6,7 +6,8 @@ categories: [Tech]
 tags: [Kali, Linux, UTM, Virtual Machines, arm64, MacOS]
 date: 2024-10-05
 draft: false
-showauthor: false
+showauthor: true
+showAuthorBottom: true
 ---
 
 *This guide is based on macOS 14.4, UTM 4.4.6 and Kali Linux 2024.1-arm64.*

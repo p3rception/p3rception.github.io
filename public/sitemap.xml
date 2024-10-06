@@ -3,49 +3,49 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://p3rception.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-10-05T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://p3rception.github.io/posts/tech/kali-vm-arm64/</loc>
+    <loc>http://localhost:1313/posts/tech/kali-vm-arm64/</loc>
     <lastmod>2024-10-05T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://p3rception.github.io/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2024-10-04T20:28:51+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://p3rception.github.io/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2024-10-04T20:28:51+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://p3rception.github.io/resume/</loc>
+    <loc>http://localhost:1313/resume/</loc>
     <lastmod>2024-10-02T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://p3rception.github.io/posts/tech/test-post/</loc>
+    <loc>http://localhost:1313/posts/tech/test-post/</loc>
     <lastmod>2024-10-02T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://p3rception.github.io/posts/university/test-post/</loc>
+    <loc>http://localhost:1313/posts/university/test-post/</loc>
     <lastmod>2024-10-02T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://p3rception.github.io/projects/</loc>
+    <loc>http://localhost:1313/projects/</loc>
     <lastmod>2022-06-13T20:55:37+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
