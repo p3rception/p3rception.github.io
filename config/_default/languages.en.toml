@@ -14,4 +14,4 @@ rtl = false
 copyright = "&copy; 2024 | Dimitris Pergelidis"
 
 description = "P3R | Dimitris Pergelidis"
-author = { bio = "IT Security Engineer @ GRNET", email = "dim.pergel@gmail.com", headline = "{{< typeit speed=70 lifeLike=true breakLines=false loop=true >}}IT Security Engineer @ GRNET\nMSc Computer Systems @ DI,UOA{{< /typeit >}}", image = "img/profile_no_bg.png", imageQuality = 96, links = [ { email = "mailto:dim.pergel@gmail.com" }, { github = "https://github.com/p3rception" }, { linkedin = "https://linkedin.com/in/dimitrisper" } ], name = "Dimitris Pergelidis" }
+author = { bio = "IT Security Engineer @ GRNET", email = "dim.pergel@gmail.com", headline = "{{< typeit speed=70 lifeLike=true breakLines=false loop=true >}}IT Security Engineer @ GRNET\nMSc Computer Systems @ UOA{{< /typeit >}}", image = "img/profile_no_bg.png", imageQuality = 96, links = [ { email = "mailto:dim.pergel@gmail.com" }, { github = "https://github.com/p3rception" }, { linkedin = "https://linkedin.com/in/dimitrisper" } ], name = "Dimitris Pergelidis" }
