@@ -23,7 +23,7 @@ layoutBackgroundHeaderSpace: false
 ---
 #
 {{< button href="Resume.pdf" target="_blank" >}}
-Downloadㅤ{{< icon "pdf-file" >}}
+Download as PDF
 {{< /button >}}
 
 ## Experience
