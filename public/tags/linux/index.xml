@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on P3R/gelidis</title>
-    <link>http://localhost:1313/tags/linux/</link>
-    <description>Recent content in Linux on P3R/gelidis</description>
+    <title>Linux on p3r⋅gelidis</title>
+    <link>https://p3rception.github.io/tags/linux/</link>
+    <description>Recent content in Linux on p3r⋅gelidis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>dim.pergel@gmail.com (Dimitris Pergelidis)</managingEditor>
     <webMaster>dim.pergel@gmail.com (Dimitris Pergelidis)</webMaster>
     <copyright>© 2024 Dimitris Pergelidis</copyright>
-    <lastBuildDate>Sat, 05 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://p3rception.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kali Linux on Apple Silicon [2024]</title>
-      <link>http://localhost:1313/posts/tech/kali-vm-arm64/</link>
+      <link>https://p3rception.github.io/posts/tech/kali-vm-arm64/</link>
       <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>http://localhost:1313/posts/tech/kali-vm-arm64/</guid>
+      <guid>https://p3rception.github.io/posts/tech/kali-vm-arm64/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/tech/kali-vm-arm64/featured-kali-ascii.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/posts/tech/kali-vm-arm64/featured-kali-black.png" />
     </item>
     
     <item>
       <title>Tech Post</title>
-      <link>http://localhost:1313/posts/tech/test-post/</link>
+      <link>https://p3rception.github.io/posts/tech/test-post/</link>
       <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>http://localhost:1313/posts/tech/test-post/</guid>
+      <guid>https://p3rception.github.io/posts/tech/test-post/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/tech/test-post/featured-linux.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/posts/tech/test-post/featured-linux.jpg" />
     </item>
     
   </channel>

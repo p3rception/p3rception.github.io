@@ -21,15 +21,17 @@ showLikes: false
 layoutBackgroundHeaderSpace: false
 ---
 
+[![GitHub stats](https://github-readme-stats.vercel.app/api?username=p3rception&show_icons=true&hide=issues&hide_title=true&title_color=28A2E3&text_color=FFFFFF&icon_color=28B9FF&bg_color=00000000&border_color=cccccc&hide_border=true&border_radius=10&hide_rank=false&rank_icon=github&custom_title=Github%20Statistics&text_bold=true&ring_color=28A2E3&show=prs_merged_percentage)](https://github.com/anuraghazra/github-readme-stats)
 #
 {{< github repo="p3rception/glassfox" >}}
-
 #
 {{< github repo="p3rception/indigo-zed" >}}
 #
 {{< github repo="p3rception/dotfiles" >}}
 #
 {{< github repo="p3rception/PyNaut" >}}
+#
+{{< github repo="p3rception/NeoNote" >}}
 #
 {{< github repo="p3rception/thunderbird-sieve-converter" >}}
 
