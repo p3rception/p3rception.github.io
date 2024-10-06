@@ -1,5 +1,0 @@
-{{/* adir1 TEMP FIX FOR TYPEIT */}}
-{{ if .Page.HasShortcode "typeit" }}
-{{ $typeitLib := resources.Get "lib/typeit/typeit.umd.js" }}
-<script defer src="{{ $typeitLib.RelPermalink }}" integrity="{{ $typeitLib.Data.Integrity }}"></script>
-{{ end }}
