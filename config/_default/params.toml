@@ -10,7 +10,7 @@ enableCodeCopy = true
 disableImageOptimization = false
 disableTextInHeader = true
 
-defaultBackgroundImage = "/img/bg-4.jpg"
+defaultBackgroundImage = "/img/bg-athens-blurred.png"
 defaultFeaturedImage = "/img/bg-4.jpg"
 
 highlightCurrentMenuArea = true
@@ -35,7 +35,7 @@ showMoreLink = true
 showMoreLinkDest = "/posts/"
 cardView = true
 cardViewScreenWidth = false
-layoutBackgroundBlur = false
+layoutBackgroundBlur = true
 
 [article]
 showDate = true
