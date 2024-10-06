@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on P3R/gelidis</title>
-    <link>https://p3rception.github.io/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on P3R/gelidis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>dim.pergel@gmail.com (Dimitris Pergelidis)</managingEditor>
     <webMaster>dim.pergel@gmail.com (Dimitris Pergelidis)</webMaster>
     <copyright>© 2024 Dimitris Pergelidis</copyright>
-    <lastBuildDate>Sat, 05 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://p3rception.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tech</title>
-      <link>https://p3rception.github.io/categories/tech/</link>
+      <link>http://localhost:1313/categories/tech/</link>
       <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>https://p3rception.github.io/categories/tech/</guid>
+      <guid>http://localhost:1313/categories/tech/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Placeholder</title>
-      <link>https://p3rception.github.io/categories/placeholder/</link>
+      <link>http://localhost:1313/categories/placeholder/</link>
       <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>https://p3rception.github.io/categories/placeholder/</guid>
+      <guid>http://localhost:1313/categories/placeholder/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>University</title>
-      <link>https://p3rception.github.io/categories/university/</link>
+      <link>http://localhost:1313/categories/university/</link>
       <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
       <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
-      <guid>https://p3rception.github.io/categories/university/</guid>
+      <guid>http://localhost:1313/categories/university/</guid>
       <description></description>
       
     </item>

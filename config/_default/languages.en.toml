@@ -8,7 +8,7 @@ weight = 1
 dateFormat = "2 January 2006"
 displayName = "EN"
 isoCode = "en"
-logo = "img/dp-gradient.png"
+logo = "img/dp-stroke-small.png"
 rtl = false
 description = "P3R | Dimitris Pergelidis"
 author = { bio = "IT Security Engineer @ GRNET", email = "dim.pergel@gmail.com", headline = "IT Security Engineer @ GRNET", image = "img/profile_no_bg.png", imageQuality = 96, links = [ { email = "mailto:dim.pergel@gmail.com" }, { github = "https://github.com/p3rception" }, { linkedin = "https://linkedin.com/in/dimitrisper" } ], name = "Dimitris Pergelidis" }
