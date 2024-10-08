@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Other on p3r⋅gelidis</title>
+    <link>https://p3rception.github.io/categories/other/</link>
+    <description>Recent content in Other on p3r⋅gelidis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>dim.pergel@gmail.com (Dimitris Pergelidis)</managingEditor>
+    <webMaster>dim.pergel@gmail.com (Dimitris Pergelidis)</webMaster>
+    <copyright>&amp;copy; 2024 | Dimitris Pergelidis</copyright>
+    <lastBuildDate>Thu, 10 Jul 1856 00:00:00 +0000</lastBuildDate><atom:link href="https://p3rception.github.io/categories/other/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Other Post</title>
+      <link>https://p3rception.github.io/posts/other/test-post/</link>
+      <pubDate>Thu, 10 Jul 1856 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/posts/other/test-post/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/posts/other/test-post/featured-nikola-tesla.jpg" />
+    </item>
+    
+  </channel>
+</rss>

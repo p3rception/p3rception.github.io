@@ -21,16 +21,22 @@
   weight = 20
 
 [[main]]
-  name = "University"
-  parent = "Posts"
-  pageRef = "categories/university"
-  weight = 20
-
-[[main]]
   name = "Tech"
   parent = "Posts"
   pageRef = "categories/tech"
-  weight = 20
+  weight = 21
+  
+[[main]]
+  name = "University"
+  parent = "Posts"
+  pageRef = "categories/university"
+  weight = 22
+
+[[main]]
+  name = "Other"
+  parent = "Posts"
+  pageRef = "categories/other"
+  weight = 23
 
 [[main]]
   name = "Resume"
