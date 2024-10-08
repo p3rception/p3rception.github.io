@@ -30,5 +30,15 @@
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/posts/university/test-post/featured-vr.jpg" />
     </item>
     
+    <item>
+      <title>Other Post</title>
+      <link>https://p3rception.github.io/posts/other/test-post/</link>
+      <pubDate>Thu, 10 Jul 1856 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>https://p3rception.github.io/posts/other/test-post/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://p3rception.github.io/posts/other/test-post/featured-nikola-tesla.jpg" />
+    </item>
+    
   </channel>
 </rss>
