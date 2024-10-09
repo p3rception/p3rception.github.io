@@ -3,7 +3,7 @@ title: Tech Post
 summary: ""
 description: ""
 categories: [placeholder, tech]
-tags: [linux, guide]
+tags: [linux]
 date: 2024-10-02
 draft: false
 showauthor: false

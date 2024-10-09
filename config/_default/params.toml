@@ -79,7 +79,7 @@ cardView = true
 cardViewScreenWidth = false
 
 [sitemap]
-excludedKinds = [ "taxonomy", "term" ]
+excludedKinds = ["taxonomy", "term"]
 
 [taxonomy]
 showTermCount = true
