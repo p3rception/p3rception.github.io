@@ -1,8 +1,8 @@
 :root { 
    --color-neutral:        255, 255, 255;
-   --color-neutral-50:     255,255,255;
+   --color-neutral-50:     255,255, 255;
    --color-neutral-100:    244, 244, 245;
-   --color-neutral-200:    200, 228, 231;
+   --color-neutral-200:    255,255, 255;
    --color-neutral-300:    180, 180, 180;
    --color-neutral-400:    161, 161, 170;
    --color-neutral-500:    113, 113, 122;
