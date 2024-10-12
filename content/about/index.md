@@ -22,9 +22,10 @@ layoutBackgroundHeaderSpace: false
 ---
 
 ### **Interests**
-* DevSecOps
-* Cyber Threat Intelligence
-* Reverse Engineering
+* Scripting (Bash/Python)
+* Dev(Sec)Ops
+* CTI (Cyber Threat Intelligence)
+* OSINT (Open-Source Intelligence)
 
 ### **Values**
 * Attention to detail
