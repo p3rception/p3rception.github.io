@@ -21,7 +21,7 @@ showLikes: false
 layoutBackgroundHeaderSpace: false
 ---
 
-[![GitHub stats](https://github-readme-stats.vercel.app/api?username=p3rception&show_icons=true&hide=issues&hide_title=true&title_color=28A2E3&text_color=FFFFFF&icon_color=4DBCEA&bg_color=00000000&border_color=334155&hide_border=false&border_radius=10&hide_rank=false&rank_icon=github&custom_title=Github%20Statistics&text_bold=true&ring_color=4DBCEA&show=prs_merged_percentage)](https://github.com/anuraghazra/github-readme-stats)
+[![GitHub stats](https://github-readme-stats.vercel.app/api?username=p3rception&show_icons=true&hide=issues&hide_title=true&title_color=28A2E3&text_color=FFFFFF&icon_color=4DBCEA&bg_color=00000000&border_color=334155&hide_border=false&border_radius=10&hide_rank=false&rank_icon=github&custom_title=Github%20Statistics&text_bold=true&ring_color=4DBCEA)](https://github.com/anuraghazra/github-readme-stats)
 #
 {{< github repo="p3rception/glassfox" >}}
 #
