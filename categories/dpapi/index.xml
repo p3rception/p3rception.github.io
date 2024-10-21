@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DPAPI on Dimitris (p3r)gelidis</title>
+    <link>http://localhost:1313/categories/dpapi/</link>
+    <description>Recent content in DPAPI on Dimitris (p3r)gelidis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>dim.pergel@gmail.com (Dimitris Pergelidis)</managingEditor>
+    <webMaster>dim.pergel@gmail.com (Dimitris Pergelidis)</webMaster>
+    <copyright>&amp;copy; 2024 | Dimitris Pergelidis</copyright>
+    <lastBuildDate>Wed, 02 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/dpapi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Offline Decryption of DPAPI blobs</title>
+      <link>http://localhost:1313/posts/tech/dpapi-blobs/</link>
+      <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
+      <author>dim.pergel@gmail.com (Dimitris Pergelidis)</author>
+      <guid>http://localhost:1313/posts/tech/dpapi-blobs/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/posts/tech/dpapi-blobs/featured-linux.jpg" />
+    </item>
+    
+  </channel>
+</rss>
