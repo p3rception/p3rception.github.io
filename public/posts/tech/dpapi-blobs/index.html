@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="false"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Offline Decryption of DPAPI blobs &middot; Dimitris (p3r)gelidis</title>
+  <meta name="title" content="Offline Decryption of DPAPI blobs &middot; Dimitris (p3r)gelidis" />
+  
+  <meta name="description" content="P3R | Dimitris Pergelidis" />
+  <meta name="keywords" content="DPAPI, decryption, windows, forensics, " />
+  
+  
+  <link rel="canonical" href="https://p3rception.github.io/posts/tech/dpapi-blobs/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.abdf1a43629f75064fced83a6db79919f658942dbc2015ebc003986d2b2f478ad156826645e61f7a78aeac57a7d62a1823529f9c20204dc5e1bc9d77674f0168.css"
+    integrity="sha512-q98aQ2KfdQZPztg6bbeZGfZYlC28IBXrwAOYbSsvR4rRVoJmReYfeniurFen1ioYI1KfnCAgTcXhvJ13Z08BaA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.2d47479d158a5fc750f54275b1b204958ea0bcaa288ca0311ed2d7bdc0afade6aef8528b31d238c3b64cd826c94b0afb09a9a566bbba7cb9e3fcbbb3c0acc296.js"
+    integrity="sha512-LUdHnRWKX8dQ9UJ1sbIElY6gvKoojKAxHtLXvcCvreau&#43;FKLMdI4w7ZM2CbJSwr7CamlZru6fLnj/LuzwKzClg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.efbf3b6b987689fffaf2d7b73173d2690c0279a04d444b0537a77d7f4ff6e6d493445400cb0cf56bc0f0f123e19f15394e63cae34e67f069bd013dd5c73df56e.js"
+    integrity="sha512-7787a5h2if/68te3MXPSaQwCeaBNREsFN6d9f0/25tSTRFQAywz1a8Dw8SPhnxU5TmPK405n8Gm9AT3Vxz31bg==" data-copy="" data-copied=""></script>
+  
+  
+  
+  <script src="/lib/zoom/zoom.min.37d2094687372da3f7343a221a470f6b8806f7891aa46a5a03966af7f0ebd38b9fe536cb154e6ad28f006d184b294525a7c4054b6bbb4be62d8b453b42db99bd.js" integrity="sha512-N9IJRoc3LaP3NDoiGkcPa4gG94kapGpaA5Zq9/Dr04uf5TbLFU5q0o8AbRhLKUUlp8QFS2u7S&#43;Yti0U7QtuZvQ=="></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://p3rception.github.io/posts/tech/dpapi-blobs/">
+  <meta property="og:site_name" content="Dimitris (p3r)gelidis">
+  <meta property="og:title" content="Offline Decryption of DPAPI blobs">
+  <meta property="og:description" content="P3R | Dimitris Pergelidis">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-10-20T00:00:00+00:00">
+    <meta property="article:tag" content="DPAPI">
+    <meta property="article:tag" content="Decryption">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Forensics">
+    <meta property="og:image" content="https://p3rception.github.io/posts/tech/dpapi-blobs/featured-forensics.jpeg">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://p3rception.github.io/posts/tech/dpapi-blobs/featured-forensics.jpeg">
+  <meta name="twitter:title" content="Offline Decryption of DPAPI blobs">
+  <meta name="twitter:description" content="P3R | Dimitris Pergelidis">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Offline Decryption of DPAPI blobs",
+    "headline": "Offline Decryption of DPAPI blobs",
+    
+    
+    "inLanguage": "en",
+    "url" : "https:\/\/p3rception.github.io\/posts\/tech\/dpapi-blobs\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Dimitris Pergelidis"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-10-20T00:00:00\u002b00:00",
+    "datePublished": "2024-10-20T00:00:00\u002b00:00",
+    
+    "dateModified": "2024-10-20T00:00:00\u002b00:00",
+    
+    "keywords": ["DPAPI","decryption","windows","forensics"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2232"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="Dimitris Pergelidis" />
+  
+  
+  
+  <link href="https://github.com/p3rception" rel="me" />
+  
+  
+  <link href="https://app.hackthebox.com/profile/968175" rel="me" />
+  
+  
+  <link href="https://linkedin.com/in/dimitrisper" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FDM1SFK5H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0FDM1SFK5H');
+</script>
+
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    
+    
+    <div>
+        <a href="/" class="flex">
+            <span class="sr-only">Dimitris (p3r)gelidis</span>
+
+            
+            <img src="/img/dp-stroke-small.png" width="967" height="1080"
+                class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="Dimitris (p3r)gelidis" />
+            
+
+        </a>
+    </div>
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+            
+  <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        About
+    </p>
+</a>
+
+
+
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      Posts
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/categories/tech/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Tech
+          </p>
+        </a>
+        
+        <a href="/categories/university/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            University
+          </p>
+        </a>
+        
+        <a href="/categories/other/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Other
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/resume/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Resume
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/projects/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Projects
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="https://github.com/p3rception"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <span >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+    </span>
+    
+    <p class="text-base font-medium" title="">
+        
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="https://app.hackthebox.com/profile/968175"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <span >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+   <path
+      d="m21.406 6.086-9-4a1.001 1.001 0 0 0-.813 0l-9 4c-.02.009-.034.024-.054.035-.028.014-.058.023-.084.04-.022.015-.039.034-.06.05a.87.87 0 0 0-.19.194c-.02.028-.041.053-.059.081a1.119 1.119 0 0 0-.076.165c-.009.027-.023.052-.031.079A1.013 1.013 0 0 0 2 7v10c0 .396.232.753.594.914l9 4c.13.058.268.086.406.086a.997.997 0 0 0 .402-.096l.004.01 9-4A.999.999 0 0 0 22 17V7a.999.999 0 0 0-.594-.914zM12 4.095 18.538 7 12 9.905l-1.308-.581L5.463 7 12 4.095zM4 16.351V8.539l7 3.111v7.811l-7-3.11zm9 3.11V11.65l7-3.111v7.812l-7 3.11z"
+      fill="currentColor"></path>
+</svg>
+  </span>
+
+
+    </span>
+    
+    <p class="text-base font-medium" title="">
+        
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="https://www.linkedin.com/in/dimitrisper/"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <span >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+    </span>
+    
+    <p class="text-base font-medium" title="">
+        
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" class="block">
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li id="menu-close-button">
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            About
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Posts
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/categories/tech/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Tech
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/categories/university/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            University
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/categories/other/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Other
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/resume/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Resume
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/projects/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Projects
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://github.com/p3rception"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <div >
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+        </div>
+        
+        <p class="text-bg font-bg" title="">
+            
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://app.hackthebox.com/profile/968175"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <div >
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+   <path
+      d="m21.406 6.086-9-4a1.001 1.001 0 0 0-.813 0l-9 4c-.02.009-.034.024-.054.035-.028.014-.058.023-.084.04-.022.015-.039.034-.06.05a.87.87 0 0 0-.19.194c-.02.028-.041.053-.059.081a1.119 1.119 0 0 0-.076.165c-.009.027-.023.052-.031.079A1.013 1.013 0 0 0 2 7v10c0 .396.232.753.594.914l9 4c.13.058.268.086.406.086a.997.997 0 0 0 .402-.096l.004.01 9-4A.999.999 0 0 0 22 17V7a.999.999 0 0 0-.594-.914zM12 4.095 18.538 7 12 9.905l-1.308-.581L5.463 7 12 4.095zM4 16.351V8.539l7 3.111v7.811l-7-3.11zm9 3.11V11.65l7-3.111v7.812l-7 3.11z"
+      fill="currentColor"></path>
+</svg>
+  </span>
+
+
+        </div>
+        
+        <p class="text-bg font-bg" title="">
+            
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://www.linkedin.com/in/dimitrisper/"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <div >
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+        </div>
+        
+        <p class="text-bg font-bg" title="">
+            
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+<script>
+    (function () {
+        var $mainmenu = $('.main-menu');
+        var path = window.location.pathname;
+        $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+            $(e).children('p').addClass('active');
+        });
+    })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/posts/tech/dpapi-blobs/featured-forensics_hu1693490069836399787.jpeg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      Offline Decryption of DPAPI blobs
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-20T00:00:00&#43;00:00">20 October 2024</time><span class="px-2 text-primary-500">&middot;</span><span>2232 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">11 mins</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/categories/tech/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Tech
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/dpapi/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    DPAPI
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/decryption/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Decryption
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/windows/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Windows
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/forensics/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Forensics
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+<h2 class="relative group">Table Of Contents 
+    <div id="table-of-contents" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#table-of-contents" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#what-kind-of-encrypted-secrets-dpapi-blobs-are-protected-by-dpapi">What kind of encrypted secrets (DPAPI blobs) are protected by DPAPI?</a></li>
+<li><a href="#how-are-these-encrypted-eg-which-keys-are-used-and-where-are-they-stored">How are these encrypted (e.g. which keys are used) and where are they stored?</a>
+<ul>
+<li><a href="#encryption-mechanism">Encryption Mechanism</a></li>
+<li><a href="#master-keys">Master Keys</a></li>
+<li><a href="#master-key-structure-windows-xp-and-above">Master key structure (Windows XP and above)</a></li>
+<li><a href="#storage-locations">Storage locations</a></li>
+<li><a href="#the-preferred-file">The preferred file</a></li>
+<li><a href="#dpapi-domain-backup-key">DPAPI domain backup key</a></li>
+</ul>
+</li>
+<li><a href="#is-there-a-way-to-extract-the-values-of-those-secrets-what-tools-can-we-use-focusing-on-linux-based-solutions">Is there a way to extract the values of those secrets? What tools can we use (focusing on Linux-based solutions)?</a>
+<ul>
+<li><a href="#key-hierarchy-and-decryption-flow">Key Hierarchy and Decryption Flow</a></li>
+<li><a href="#rsa-machine-private-key-decryption-using-impacket--sharpdpapi">RSA Machine (Private) Key decryption using impacket &amp; SharpDPAPI</a></li>
+<li><a href="#chrome-stored-passwords-decryption">Chrome stored passwords decryption</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2 class="relative group">Introduction 
+    <div id="introduction" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#introduction" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>DPAPI (Data Protection API) is an integral component within the Windows OS designed to provide a simple, yet secure method of <strong>encrypting</strong> and <strong>decrypting</strong> data. This API is used by both system and third-party applications to protect sensitive information such as <strong>passwords</strong>, <strong>certificates</strong>, and other <strong>confidential data</strong>. This simplifies the process for developers, who don&rsquo;t need to manage the protection of the encryption keys themselves. The encryption keys used by DPAPI are either tied to specific users or the local system, ensuring that the protected data remains secure and accessible only to authorized entities.
+
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./dpapi-simplified.png" alt="" />
+      
+    </figure>
+</p>
+
+
+<h2 class="relative group">What kind of encrypted secrets (DPAPI blobs) are protected by DPAPI? 
+    <div id="what-kind-of-encrypted-secrets-dpapi-blobs-are-protected-by-dpapi" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#what-kind-of-encrypted-secrets-dpapi-blobs-are-protected-by-dpapi" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li><strong>Web Browsers</strong>: Cookies, usernames, passwords and auto-completion data stored by Chromium-based browsers like Chrome &amp; Edge.</li>
+<li><strong>Email Clients</strong>: Passwords and account information for email applications such as Outlook and Windows Mail.</li>
+<li><strong>Windows Credential Manager</strong>: Passwords for shared folders, internal FTP accounts, network resources and other credentials stored in the Windows Credential Manager.</li>
+<li><strong>Network Passwords</strong>: Wi-Fi passwords (both WEP/WPA and Enterprise PEAP versions).</li>
+<li><strong>System Credentials</strong>: Credentials for Windows Vault, remote desktop connections (RDP), and other system-level secrets.</li>
+<li><strong>Third-Party Applications</strong>: Passwords and credentials for applications like OpenVPN, iCloud, VMware Workstation, FortiClient, and Dropbox.</li>
+<li><strong>Private Keys</strong>: Asymmetric private keys, certificates, and other encryption keys used by various applications.</li>
+<li><strong>Windows Hello</strong>: Credentials used for Windows Hello (e.g., PIN, picture password, fingerprint).</li>
+<li><strong>Other Applications</strong>: Personal data in applications like Skype, MSN Messenger, and more.</li>
+</ul>
+
+
+<h2 class="relative group">How are these encrypted (e.g. which keys are used) and where are they stored? 
+    <div id="how-are-these-encrypted-eg-which-keys-are-used-and-where-are-they-stored" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#how-are-these-encrypted-eg-which-keys-are-used-and-where-are-they-stored" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">Encryption Mechanism 
+    <div id="encryption-mechanism" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#encryption-mechanism" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>When an application calls DPAPI to protect data, the following process occurs:</p>
+
+
+<h4 class="relative group">Key Derivation 
+    <div id="key-derivation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#key-derivation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>DPAPI generates a unique symmetric key for each piece of data to be encrypted.</li>
+<li>This key is derived using PBKDF2.</li>
+<li>The inputs to PBKDF2 include:
+<ul>
+<li>The user&rsquo;s password (for user data) or system secret (for system data)</li>
+<li>A randomly generated salt (typically 16 bytes)</li>
+<li>An iteration count (varies by Windows version, e.g., 8000 for Windows 10)</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 class="relative group">Data Encryption 
+    <div id="data-encryption" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#data-encryption" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li>The derived symmetric key is used to encrypt the data.</li>
+<li>The encryption algorithm depends on the Windows version.
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">OS</th>
+          <th style="text-align: left">Ciphering algorithm</th>
+          <th style="text-align: left">Hashing algorithm</th>
+          <th style="text-align: left">PBKDF2 iterations</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Windows 7</td>
+          <td style="text-align: left">AES256</td>
+          <td style="text-align: left">SHA512</td>
+          <td style="text-align: left">5600</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Windows 10</td>
+          <td style="text-align: left">AES256</td>
+          <td style="text-align: left">SHA512</td>
+          <td style="text-align: left">8000</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Windows 2000</td>
+          <td style="text-align: left">RC4</td>
+          <td style="text-align: left">SHA1</td>
+          <td style="text-align: left">1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Windows Vista</td>
+          <td style="text-align: left">3DES</td>
+          <td style="text-align: left">SHA1</td>
+          <td style="text-align: left">24000</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Windows XP</td>
+          <td style="text-align: left">3DES</td>
+          <td style="text-align: left">SHA1</td>
+          <td style="text-align: left">4000</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+</ul>
+
+
+<h4 class="relative group">DPAPI Blob Creation 
+    <div id="dpapi-blob-creation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#dpapi-blob-creation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>DPAPI has two parts: the encryption/decryption keys, called DPAPI Master Keys and the encrypted data itself, called a DPAPI Blob or just blob. The blob is actually a binary, hex-formatted data structure with several fields.</p>
+<p><strong>Encrypted data blob structure</strong> with the most important values highlighted:
+
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./dpapi-blob-structure.png" alt="" />
+      
+    </figure>
+</p>
+<ul>
+<li><strong>guidMasterKey</strong> – A <a href="https://learn.microsoft.com/en-us/dotnet/api/system.guid?view=net-6.0" target="_blank">GUID (globally unique identifier)</a> representing the identifier of the <strong>Master Key</strong> that was used to encrypt this blob. This can be either a user’s Master Key or a local machine Master Key (see details below).</li>
+<li><strong>pbSalt</strong> – A salt value that was generated during the encryption operation. This salt is coupled with the Master Key to encrypt the plaintext data.</li>
+<li><strong>pbData</strong> – The actual encrypted data. As shown above, the blob structure contains a list of algorithms, format, and additional information related to how the data was encrypted.</li>
+</ul>
+
+
+<h3 class="relative group">Master Keys 
+    <div id="master-keys" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#master-keys" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Each authority (details below) in a Windows operating system (OS) has its own DPAPI Master Key, which is used by any application running in the related authority context. The Master Key is stored to a file and encrypted at rest using one method or two methods – depending on the authority being used, and the Windows version.</p>
+<p>There are two types of master keys:</p>
+<ul>
+<li><strong>User Master Keys</strong>: Unique to each user, derived from the user&rsquo;s password and:
+<ul>
+<li>For <strong>domain</strong> users: combination of user&rsquo;s SID and <a href="https://www.tarlogic.com/cybersecurity-glossary/ntlm-hash/" target="_blank">NTLM hash</a></li>
+<li>For <strong>local</strong> users: combination of user&rsquo;s SID and SHA1 hash of the password</li>
+<li>Notes:
+<ul>
+<li>DPAPI User Master Keys <strong>cannot be decrypted offline</strong> unless the password or SHA1 hash of that password is known.</li>
+<li>On a running system, after typing in the password during login: the SHA1 password hash is being kept in the memory of the process “lsass.exe”, and that is what e.g., PowerShell uses to encrypt and decrypt User DPAPI Blobs.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>System Master Keys</strong>: Unique to each system, used for encrypting data accessible to all users on the system. These are encrypted with the Local Security Authority (LSA) DPAPI secret key.</li>
+</ul>
+
+
+<h3 class="relative group">Master key structure (Windows XP and above) 
+    <div id="master-key-structure-windows-xp-and-above" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#master-key-structure-windows-xp-and-above" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">Headers 
+    <div id="headers" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#headers" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><strong>Version</strong>: The Master Key version, commonly has a value of 2</li>
+<li><strong>GUID</strong>: Master Key’s identifier</li>
+<li><strong>Flags</strong>: Includes settings of the Master Key. For example, one of the flags indicates whether Section 1: User-encrypted Master Key (see details below) is encrypted with the SHA1 or the NTLM hash of the user’s password.</li>
+<li><strong>Sections lengths</strong>: Specifies the length of each section. Lengths can help to determine which sections are used to encrypt this Master Key.</li>
+</ul>
+
+
+<h4 class="relative group">Body (Sections) 
+    <div id="body-sections" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#body-sections" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>Sections contain the actual Master Key (the one that is used to encrypt and decrypt data blobs) in an encrypted form.</p>
+<ul>
+<li><strong>Section 1: User-encrypted Master Key</strong>: Stores the Master Key in a user-encrypted form, where the phrase used to encrypt it is the user’s password or DPAPI_SYSTEM registry key (depending on the authority).</li>
+<li><strong>Section 2: Local Encryption Key (legacy)</strong>: This legacy section, used in Windows 2000, stores a local encryption key to decrypt a local backup of the Master Key. This section is not used from later Windows versions but still contains data.</li>
+<li><strong>Section 3: Credential History</strong>: Stores a GUID that points to a link stored in the user’s <a href="https://www.passcape.com/windows_password_recovery_dpapi_credhist" target="_blank">CREDHIST</a> file. The CREDHIST (Credential History) file maintains a chain of a local user password history, in an encrypted form. As local users may change their passwords, DPAPI requires the ability to read the password that was used to encrypt a Master Key created in the past.</li>
+<li><strong>Section 4: Domain Backup</strong>: Stores another Master Key copy that was encrypted with the domain backup key. <strong>The domain backup key</strong> is an RSA key pair in which the private and public keys are stored in the Domain Controller (DC), and the public key is also distributed to every user’s profile, enabling each user to encrypt their own Master Key. This does not back up a copy of the Master Key to the DC, but provides the ability to recover it if the domain user’s password is forgotten. As there might be more than one domain backup key, this section includes a slot for the GUID of this key.</li>
+</ul>
+
+
+<h3 class="relative group">Storage locations 
+    <div id="storage-locations" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#storage-locations" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li><strong>DPAPI blobs</strong> (encrypted secrets) are typically stored in:
+<ul>
+<li><code>C:\Users\&lt;USER&gt;\AppData\Local\Microsoft\Credentials\</code></li>
+<li><code>C:\Users\&lt;USER&gt;\AppData\Roaming\Microsoft\Credentials\</code></li>
+<li>Application-specific locations (e.g., Chrome user data directory)</li>
+</ul>
+</li>
+<li><strong>User Client Certificates</strong>
+<ul>
+<li>Public Key Certificates: <code>%AppData%\Microsoft\SystemCertificates\My\Certificates\</code></li>
+<li>Private Keys: <code>C:\Users\&lt;USER&gt;\AppData\Roaming\Microsoft\Crypto\RSA\&lt;USER_SID&gt;\</code></li>
+</ul>
+</li>
+<li><strong>System Client Certificates</strong>
+<ul>
+<li>Public Key Certificates: <code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SystemCertificates</code></li>
+<li>Private Keys: <code>&lt;DISK&gt;\ProgramData\Microsoft\Crypto\RSA\MachineKeys\</code></li>
+</ul>
+</li>
+<li><strong>Master Keys</strong> (used by <strong>4</strong> different authorities):
+<ol>
+<li><strong>Local Machine (System Master Keys)</strong>
+<ul>
+<li>Master Key location: <code>C:\Windows\System32\Microsoft\Protect\S-1-5-18\</code></li>
+<li>Additional information: This Master Key is used when the application scopes the data encryption to use the local machine. The <code>CRYPTPROTECT_LOCAL_MACHINE</code> flag is set.</li>
+</ul>
+</li>
+<li><strong>Local Users</strong>
+<ul>
+<li>Master Key location: <code>C:\Users\&lt;USER&gt;\AppData\Roaming\Microsoft\Protect\&lt;USER_SID&gt;</code></li>
+<li>Additional information: Older Master Keys of local users point to the relevant link within the <strong>CREDHIST</strong> file, as the key might be encrypted with an older password.</li>
+</ul>
+</li>
+<li><strong>System Users</strong>
+<ul>
+<li>Master Key location: <code>C:\Windows\System32\Microsoft\Protect\S-1-5-18\&lt;USER&gt;</code></li>
+<li>Common data blobs paths:
+<ul>
+<li><code>C:\Windows\System32\config\systemprofile\AppData\</code></li>
+<li><code>C:\Windows\System32\config\LocalService\AppData\</code></li>
+<li><code>C:\Windows\System32\config\NetworkService\AppData\</code></li>
+</ul>
+</li>
+<li>Additional information: This Master Key is used when the encryption is scoped to the user, but the process is running with either System, LocalService or NetworkService users.</li>
+</ul>
+</li>
+<li><strong>Domain Users</strong>
+<ul>
+<li>Master Key location: <code>C:\Users\&lt;USER&gt;\AppData\Microsoft\Protect\&lt;USER_SID&gt;</code></li>
+<li>Additional information: Unlike local users, all domain users’ Master Keys are always encrypted with their <strong>latest</strong> password, because domain users <strong>do not</strong> maintain a CREDHIST file.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+
+
+<h3 class="relative group">The preferred file 
+    <div id="the-preferred-file" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#the-preferred-file" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Inside Master Key’s path, we may encounter more than one Master Key file. This is because Master Keys are set to expire approximately 90 days after creation. DPAPI uses the ‘Preferred’ file, located in the same folder, to keep track of the currently used (preferred) Master Key and its expiration date.</p>
+<p>The image below shows an example of the files that may be located in a domain user’s Master Key path:
+
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./MK-preferred.png" alt="" />
+      
+    </figure>
+</p>
+
+
+<h3 class="relative group">DPAPI domain backup key 
+    <div id="dpapi-domain-backup-key" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#dpapi-domain-backup-key" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The DPAPI Domain Backup key is a unique RSA key pair that is generated only once, when the domain is created.</p>
+<p>The backup key is stored in the Active Directory as an <a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adsc/4ebb9507-6460-4d3c-a9f9-e21608708598" target="_blank">LSA secret object</a>, and is replicated across all Domain Controllers in the same domain. Members of the Domain Administrators group have the required privileges to read this key, and tools like <a href="https://github.com/gentilkiwi/mimikatz" target="_blank">Mimikatz</a> and <a href="https://github.com/GhostPack/SharpDPAPI" target="_blank">SharpDPAPI</a> can aid in automating the dump process and conversion of the key to a <a href="https://web.archive.org/web/20170531040754/http:/www.drh-consultancy.demon.co.uk/pvk.html" target="_blank">PVK format</a>. The PVK can be later used to decrypt a Master Key of any user in the domain.</p>
+<p>As previously mentioned, it&rsquo;s stored within the Active Directory database therefore doesn&rsquo;t have a traditional file system path. We can locate it through the <code>DSA.msc</code> (Directory Services Administrative) tool, under the &lsquo;<strong>System</strong>&rsquo; container:
+
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="./domain-backup-key.png" alt="" />
+      
+    </figure>
+</p>
+
+
+<h2 class="relative group">Is there a way to extract the values of those secrets? What tools can we use (focusing on Linux-based solutions)? 
+    <div id="is-there-a-way-to-extract-the-values-of-those-secrets-what-tools-can-we-use-focusing-on-linux-based-solutions" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#is-there-a-way-to-extract-the-values-of-those-secrets-what-tools-can-we-use-focusing-on-linux-based-solutions" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">Key Hierarchy and Decryption Flow 
+    <div id="key-hierarchy-and-decryption-flow" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#key-hierarchy-and-decryption-flow" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li><strong>BootKey (SysKey)</strong>
+<ul>
+<li>A 128-bit (16-byte) value derived from the SYSTEM registry hive is unique to each Windows system.</li>
+<li>Used to decrypt the LSA secrets stored in the SECURITY hive.</li>
+<li>The BootKey is derived from several values in the SYSTEM hive, such as <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\</code> values, combined and hashed to form the BootKey.</li>
+</ul>
+</li>
+<li><strong>LSA Key</strong>
+<ul>
+<li>Stored in the SECURITY hive, encrypted with the BootKey.</li>
+<li>Used to decrypt specific LSA secrets, including DPAPI system-related secrets.</li>
+<li>Once the BootKey is obtained, it decrypts the LSA key.</li>
+</ul>
+</li>
+<li><strong>LSA Secrets</strong>
+<ul>
+<li>Encrypted with the LSA Key and stored in the SECURITY hive (SECURITY\Policy\Secrets).</li>
+<li>The following secrets can be found, among others:
+<ul>
+<li><code>DPAPI_SYSTEM</code> which contains the DPAPI machine and user key for local DPAPI.</li>
+<li><code>NL$KM</code> which contains an encryption key for the MsCache also stored in the SECURITY hive (SECURITY\Cache). MsCache are the latest hashed credentials for domain users.</li>
+<li><code>$MACHINE.ACC</code> contains the computer account credentials when joined to an Active Directory domain.</li>
+<li><code>DEFAULTPASSWORD</code> is the default password when the auto-logon feature is configured.</li>
+<li>Keys starting with <code>_SC_</code> corresponds to non-interactive service account credentials that could be local or for a domain user.</li>
+</ul>
+</li>
+<li>Decrypted using the LSA Key.</li>
+</ul>
+</li>
+<li><strong>DPAPI_SYSTEM Secret</strong>
+<ul>
+<li>One of the LSA secrets, specifically used for DPAPI operations.</li>
+<li>Contains the master key necessary to decrypt system-wide DPAPI master keys.</li>
+<li>Decrypted using the LSA Key.</li>
+</ul>
+</li>
+<li><strong>System Master Keys</strong>
+<ul>
+<li>Stored under <code>&lt;DISK&gt;\Windows\System32\Microsoft\Protect\S-1-5-18\</code></li>
+<li>Each master key has a GUID and is encrypted using the DPAPI_SYSTEM secret.</li>
+<li>Decrypted using the DPAPI_SYSTEM secret.</li>
+</ul>
+</li>
+<li><strong>RSA Machine (Private) Keys</strong>
+<ul>
+<li>Located in <code>&lt;DISK&gt;\ProgramData\Microsoft\Crypto\RSA\MachineKeys\</code></li>
+<li>Used by the Cryptographic API (CAPI) to encrypt and decrypt <strong>System Client Certificates</strong>.</li>
+<li>Decrypted using a specific <strong>System Master Key</strong> from the available ones.</li>
+</ul>
+</li>
+<li><strong>Crypto Keys (CNG)</strong>
+<ul>
+<li>Found in <code>&lt;DISK&gt;\ProgramData\Microsoft\Crypto\Keys\</code></li>
+<li>Used by Cryptography API: Next Generation (CNG) for cryptographic operations.</li>
+<li>Decrypted using a specific <strong>System Master Key</strong>.</li>
+</ul>
+</li>
+<li><strong>User Data (e.g., DPAPI-protected blobs, certificates)</strong>
+<ul>
+<li>Finally, the decrypted <strong>System Master Keys</strong> or the <strong>RSA Machine/Private Keys</strong> can be used to decrypt DPAPI-protected data such as user credentials, certificates, or other sensitive information.</li>
+</ul>
+</li>
+</ol>
+
+
+<h3 class="relative group">RSA Machine (Private) Key decryption using impacket &amp; SharpDPAPI 
+    <div id="rsa-machine-private-key-decryption-using-impacket--sharpdpapi" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#rsa-machine-private-key-decryption-using-impacket--sharpdpapi" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li>Extract SYSTEM and SECURITY Registry Hives
+<ul>
+<li><code>cp &lt;DISK&gt;/Windows/System32/config/SYSTEM &lt;WORKING_DIR&gt;/DPAPI_SYSTEM.hive</code></li>
+<li><code>cp &lt;DISK&gt;/Windows/System32/config/SECURITY &lt;WORKING_DIR&gt;/DPAPI_SECURITY.hive</code></li>
+</ul>
+</li>
+<li>Extract System Master Keys
+<ul>
+<li><code>cp -r &lt;DISK&gt;/Windows/System32/Microsoft/Protect/S-1-5-18/ &lt;WORKING_DIR&gt;/SYSTEM_MKs_S-1-5-18</code></li>
+</ul>
+</li>
+<li>Decrypt each System Master Key using impacket’s <code>dpapi.py</code> and the above Registry hives
+<ul>
+<li><code>python3 impacket/dpapi.py masterkey -file SYSTEM_MKs_S-1-5-18/&lt;SYSTEM_MK_GUID&gt; -system DPAPI_SYSTEM.hive -security DPAPI_SECURITY.hive</code></li>
+<li>Indicative output:</li>
+</ul>
+</li>
+</ol>
+<pre tabindex="0"><code>$ dpapi.py masterkey 
+   -file SYSTEM_MKs_S-1-5-18/e68e86c9-c3c3-4958-b923-7b2977
+   -system DPAPI_SYSTEM.hive 
+   -security DPAPI_SECURITY.hive
+   
+Impacket v0.11.0 - Copyright 2023 Fortra
+[MASTERKEYFILE]
+Version     :        2 (2)
+Guid        : e68e86c9-c3c3-4958-b923-7b2977
+Flags       :        6 (6)
+Policy      :        0 (0)
+MasterKeyLen: 000000b0 (176)
+BackupKeyLen: 00000090 (144)
+CredHistLen : 00000014 (20)
+DomainKeyLen: 00000000 (0)
+
+[*] Target system bootKey: 0x283901db1a53ff37fd9b1a7d10
+[*] Dumping LSA Secrets
+[*] $MACHINE.ACC
+[*] DefaultPassword
+[*] DPAPI_SYSTEM
+[*] NL$KM
+Decrypted key with MachineKey
+Decrypted key: 0xf65237cada605ce19326184cafe30973f47d0fd7d8f37a0a53d8
+</code></pre><ol start="4">
+<li>Get the SHA1 hash of the Decrypted System Master Key
+<ul>
+<li><code>echo -n &quot;&lt;decrypted_system_mk&gt;&quot; | xxd -r -p | sha1sum</code></li>
+<li>Example: <code>echo -n &quot;f65237cada605ce19326184cafe30973f47d0fd7d8f37a0a53d8&quot; | xxd -r -p | sha1sum</code></li>
+</ul>
+</li>
+<li>Extract the Private Keys you want to decrypt
+<ul>
+<li>Cryptographic API (<strong>CAPI</strong>)
+<ul>
+<li>Extract RSA Machine keys
+<ul>
+<li><code>cp -r &lt;DISK&gt;/ProgramData/Microsoft/Crypto/RSA/MachineKeys/. &lt;WORKING_DIR&gt;/RSA_MACHINE_KEYS/</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cryptography API: Next Generation (<strong>CNG</strong>)
+<ul>
+<li>Extract Crypto/Keys
+<ul>
+<li><code>cp -r &lt;DISK&gt;/ProgramData/Microsoft/Crypto/Keys/. &lt;WORKING_DIR&gt;/CRYPTO_KEYS/</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Install wine in order to run SharpDPAPI (compiled binary <a href="https://github.com/r3motecontrol/Ghostpack-CompiledBinaries" target="_blank">here</a>)
+<ul>
+<li>
+<pre tabindex="0"><code> $ apt install wine
+ $ dpkg --add-architecture i386
+ $ apt install wine32
+ $ wine msiexec /i wine-mono-[version].msi
+</code></pre></li>
+</ul>
+</li>
+<li>Run SharpDPAPI.exe with <strong>certificates</strong> action and only the target file as input
+<ul>
+<li><code>wine SharpDPAPI.exe certificates /target:&lt;RSA_MACHINE_KEY&gt; </code></li>
+<li>Example below, notice the <code>masterkey needed: {&lt;SYSTEM_MASTERKEY_GUID&gt;}</code> output</li>
+<li>
+<pre tabindex="0"><code> $ wine SharpDPAPI.exe certificates /target:a1006ebd40f83685cc94962e0dd973d9_62526833-1703-428f-84dd
+
+ 0009:err:mscoree:LoadLibraryShim error reading registry key for installroot
+ __                 _   _       _ ___
+ (_  |_   _. ._ ._  | \ |_) /\  |_) |
+ __) | | (_| |  |_) |_/ |  /--\ |  _|_
+                |
+ v1.11.2
+
+ [*] Action: Certificate Triage
+ [*] Target Certificate File: a1006ebd40f83685cc94962e0dd973d9_62526833-1703-428f-84dd
+
+    [!] a1006ebd40f83685cc94962e0dd973d9_62526833-1703-428f-84dd masterkey needed: {e68e86c9-c3c3-4958-b923-7b2977}
+
+ [*] Hint: openssl pkcs12 -in cert.pem -keyex -CSP &#34;Microsoft Enhanced Cryptographic Provider v1.0&#34; -export -out cert.pfx
+
+ SharpDPAPI completed in 00:00:00.1879740
+</code></pre></li>
+</ul>
+</li>
+<li>Run SharpDPAPI.exe with certificates action and the needed System MK from above
+<ul>
+<li><code>wine SharpDPAPI.exe certificates /target:&lt;RSA_MACHINE_KEY&gt; /showall &quot;{&lt;SYSTEM_MK_GUID&gt;}:&lt;DECRYPTED_SYSTEM_MK_SHA1_HASH&gt;&quot;</code></li>
+</ul>
+</li>
+</ol>
+
+
+<h3 class="relative group">Chrome stored passwords decryption 
+    <div id="chrome-stored-passwords-decryption" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#chrome-stored-passwords-decryption" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\/tech\/dpapi-blobs\/index.md"
+        var oid_likes = "likes_posts\/tech\/dpapi-blobs\/index.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+      
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/tech/kali-vm-arm64/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Kali Linux on Apple Silicon [2024]</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-10-05T00:00:00&#43;00:00">5 October 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/tags/"
+            title="">
+            
+            Tags
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/categories/"
+            title="">
+            
+            Categories
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      © 2024 | Dimitris Pergelidis
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://p3rception.github.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>
